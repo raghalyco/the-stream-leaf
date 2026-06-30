@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Stream Leaf — Mysore's Most Personal Resort</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --fd:#0a1f14; --f:#1e3a2f; --fm:#2d5a42; --fl:#4a7c5a;
+  --gold:#c9a252; --gl:#e4c87a; --gp:#f7edd4;
+  --cream:#faf5ed; --warm:#f0e6d2; --parch:#e8d8b8;
+  --earth:#8b6040; --bark:#5a3a1a;
+  --txt:#1a1a14; --tm:#4a4840; --tl:#7a7868;
+  --border:rgba(200,180,140,0.3);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--txt);overflow-x:hidden}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 3.5rem;height:72px;transition:all .4s ease;background:transparent}
+.nav.scrolled{background:rgba(10,31,20,.93);backdrop-filter:blur(14px);height:62px;box-shadow:0 1px 0 rgba(201,162,82,.2)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1rem;font-weight:400;letter-spacing:.2em;color:var(--cream);text-decoration:none;display:flex;align-items:center;gap:10px;cursor:pointer}
+.nav-logo span{color:var(--gold)}
+.logo-mark{width:30px;height:30px;border:1px solid rgba(201,162,82,.45);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem}
+.nav-links{display:flex;gap:2.2rem;list-style:none}
+.nav-links a{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,240,230,.7);text-decoration:none;cursor:pointer;transition:color .2s;padding-bottom:2px;border-bottom:1px solid transparent}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);border-bottom-color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--fd);font-size:.65rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;border:none;padding:10px 22px;border-radius:2px;cursor:pointer;transition:all .2s}
+.nav-cta:hover{background:var(--gl);box-shadow:0 4px 16px rgba(201,162,82,.3)}
+
+/* ── PAGE SYSTEM ── */
+.page{display:none}
+.page.active{display:block}
+
+/* ── HERO ── */
+.hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 20% 70%,rgba(74,124,90,.2) 0%,transparent 55%),radial-gradient(ellipse at 80% 25%,rgba(45,90,66,.15) 0%,transparent 50%),linear-gradient(172deg,#0a1f14 0%,#162e1f 30%,#0e2419 60%,#0a1a10 100%)}
+.hero-mist{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%,rgba(201,162,82,.05) 0%,transparent 65%);animation:mist 9s ease-in-out infinite alternate}
+@keyframes mist{from{opacity:.5;transform:scale(1)}to{opacity:1;transform:scale(1.04)}}
+.leaf{position:absolute;opacity:.1;background:var(--gl);clip-path:ellipse(50% 100% at 50% 100%);animation:lf 7s ease-in-out infinite}
+.leaf:nth-child(1){top:12%;left:7%;width:28px;height:50px;animation-delay:0s;animation-duration:7s}
+.leaf:nth-child(2){top:55%;left:4%;width:18px;height:34px;animation-delay:1.5s;animation-duration:9s;opacity:.07}
+.leaf:nth-child(3){top:20%;right:7%;width:36px;height:60px;animation-delay:.5s;animation-duration:8s}
+.leaf:nth-child(4){top:68%;right:5%;width:22px;height:40px;animation-delay:2s;animation-duration:6s;opacity:.07}
+.leaf:nth-child(5){bottom:28%;left:12%;width:16px;height:28px;animation-delay:3s;animation-duration:10s}
+@keyframes lf{0%,100%{transform:translateY(0) rotate(-8deg)}40%{transform:translateY(-16px) rotate(4deg)}70%{transform:translateY(-6px) rotate(-2deg)}}
+.hero-vline{position:absolute;width:1px;background:linear-gradient(to bottom,transparent,rgba(201,162,82,.35),transparent);animation:vl 5s ease-in-out infinite alternate}
+.hero-vline:nth-child(1){height:38%;top:8%;left:14%;animation-delay:0s}
+.hero-vline:nth-child(2){height:28%;top:32%;right:17%;animation-delay:1.2s}
+@keyframes vl{from{opacity:.3}to{opacity:.7}}
+.hero-content{position:relative;z-index:2;text-align:center;padding:2rem;max-width:820px}
+.hero-tag{font-size:.62rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:1.6rem;animation:fu .8s ease both;animation-delay:.3s}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(3.2rem,7vw,6rem);font-weight:400;line-height:1.05;color:var(--cream);margin-bottom:.8rem;animation:fu .9s ease both;animation-delay:.5s}
+.hero-title em{font-style:italic;color:var(--gl)}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-style:italic;color:rgba(245,240,220,.6);line-height:1.55;margin-bottom:2.8rem;animation:fu 1s ease both;animation-delay:.7s}
+.hero-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fu 1s ease both;animation-delay:.9s}
+.btn-primary{background:var(--gold);color:var(--fd);font-size:.7rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;border:none;padding:14px 34px;cursor:pointer;transition:all .25s;border-radius:2px}
+.btn-primary:hover{background:var(--gl);transform:translateY(-3px);box-shadow:0 10px 28px rgba(201,162,82,.3)}
+.btn-outline{background:transparent;color:var(--cream);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;border:1px solid rgba(245,240,220,.35);padding:14px 34px;cursor:pointer;transition:all .25s;border-radius:2px}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px)}
+.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:fu 1s ease both;animation-delay:1.2s}
+.hero-scroll-txt{font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,240,220,.35)}
+.hero-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(201,162,82,.6),transparent);animation:sp 2s ease-in-out infinite}
+@keyframes sp{0%,100%{opacity:.4;transform:scaleY(1)}50%{opacity:1;transform:scaleY(.7)}}
+@keyframes fu{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── DASARA BANNER ── */
+.dasara{background:linear-gradient(90deg,var(--fd) 0%,#1e3a10 50%,var(--fd) 100%);padding:1.1rem 4rem;text-align:center;border-top:1px solid rgba(201,162,82,.25);border-bottom:1px solid rgba(201,162,82,.25)}
+.dasara p{font-size:.75rem;letter-spacing:.1em;color:rgba(245,240,220,.8)}
+.dasara strong{color:var(--gold)}
+
+/* ── STATS ── */
+.stats{background:var(--f);padding:1.8rem 4rem;display:flex;justify-content:center;gap:0}
+.stat{flex:1;max-width:200px;text-align:center;padding:.8rem 1.5rem;border-right:1px solid rgba(201,162,82,.18)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:'Playfair Display',serif;font-size:2rem;font-weight:400;color:var(--gold);line-height:1}
+.stat-l{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,240,220,.45);margin-top:4px}
+
+/* ── WHY SECTION ── */
+.why{display:grid;grid-template-columns:1fr 1fr}
+.why-l{background:var(--f);padding:5rem 4rem;display:flex;flex-direction:column;justify-content:center}
+.why-l .sl{color:rgba(201,162,82,.75)}
+.why-l .st{color:var(--cream);max-width:400px}
+.why-l .ss{color:rgba(245,240,220,.6)}
+.why-r{padding:5rem 4rem;background:var(--cream);display:flex;flex-direction:column;gap:2.5rem}
+.why-card{display:flex;gap:1.5rem;align-items:flex-start}
+.wi{width:46px;height:46px;flex-shrink:0;background:var(--gp);border:1px solid rgba(201,162,82,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.15rem}
+.wt h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:500;color:var(--txt);margin-bottom:5px}
+.wt p{font-size:.83rem;color:var(--tm);line-height:1.65}
+
+/* ── GALLERY ── */
+.gallery{background:var(--fd);padding-top:5rem}
+.gallery-head{padding:0 4rem 3rem;text-align:center}
+.gallery-head .sl{color:rgba(201,162,82,.65)}
+.gallery-head .st{color:var(--cream);max-width:none;text-align:center}
+.gallery-head .sdiv{margin:1.5rem auto}
+.gg{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:240px 240px;gap:3px}
+.gi{position:relative;overflow:hidden;cursor:pointer}
+.gi:nth-child(1){grid-row:1/3}
+.gi-bg{width:100%;height:100%;transition:transform .6s ease}
+.gi:hover .gi-bg{transform:scale(1.06)}
+.gi-bg.g1{background:linear-gradient(160deg,#0a1f14 0%,#1e3a28 35%,#2d5a40 65%,#4a7858 100%)}
+.gi-bg.g2{background:linear-gradient(135deg,#1a0f00 0%,#3a2008 30%,#6a3a10 60%,#c9802a 85%,#e8a040 100%)}
+.gi-bg.g3{background:linear-gradient(135deg,#0a1418 0%,#142838 35%,#1e3a50 70%,#2a5068 100%)}
+.gi-bg.g4{background:linear-gradient(135deg,#180f00 0%,#2a1808 30%,#4a2a10 60%,#7a5030 100%)}
+.gi-bg.g5{background:linear-gradient(135deg,#0f1408 0%,#1e2a10 30%,#2a3a18 60%,#4a5428 100%)}
+.gi-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,31,20,.7) 0%,transparent 55%);display:flex;align-items:flex-end;padding:1.4rem}
+.gi-lbl{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:rgba(245,240,220,.9)}
+
+/* ── INCLUSIVE ── */
+.incl{background:var(--warm);padding:6rem 4rem;text-align:center}
+.incl .st{max-width:none;text-align:center;margin:0 auto}
+.incl .sdiv{margin:1.5rem auto}
+.incl-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1.2rem;margin-top:3rem}
+.ic{background:#fff;border:1px solid var(--parch);border-radius:4px;padding:1.8rem 1rem;text-align:center;transition:all .3s}
+.ic:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(45,90,66,.12);border-color:var(--gold)}
+.ic-ico{font-size:1.8rem;margin-bottom:.7rem}
+.ic-ttl{font-family:'Playfair Display',serif;font-size:.85rem;font-weight:500;color:var(--txt);margin-bottom:3px}
+.ic-sub{font-size:.68rem;color:var(--tl)}
+
+/* ── TESTIMONIAL ── */
+.testi{background:var(--f);padding:6rem 4rem;text-align:center}
+.testi .sl{color:rgba(201,162,82,.65)}
+.tq{font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,2.5vw,1.9rem);font-style:italic;color:rgba(245,240,220,.82);max-width:680px;margin:2rem auto;line-height:1.55}
+.tq::before{content:'\201C';color:var(--gold);font-size:3.5rem;line-height:0;vertical-align:-0.9rem;margin-right:.2rem}
+.ta{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-top:1rem}
+.tdots{display:flex;gap:7px;justify-content:center;margin-top:2rem}
+.td{width:6px;height:6px;border-radius:50%;background:rgba(201,162,82,.25);cursor:pointer;transition:background .2s}
+.td.active{background:var(--gold)}
+
+/* ── CTA SECTION ── */
+.cta-sec{background:var(--cream);padding:6rem 4rem;text-align:center}
+.cta-sec p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;color:var(--tm);margin-bottom:2.5rem}
+
+/* ── SHARED ── */
+.sl{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem}
+.st{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.5vw,3rem);font-weight:400;line-height:1.2;color:var(--txt);max-width:580px}
+.ss{font-size:.9rem;color:var(--tm);line-height:1.75;max-width:520px;margin-top:.9rem}
+.sdiv{width:44px;height:2px;background:var(--gold);margin:1.4rem 0}
+
+/* ── RESORT PAGE ── */
+.ph{min-height:55vh;display:flex;align-items:flex-end;padding:4rem;position:relative;overflow:hidden}
+.ph-1{background:linear-gradient(160deg,#0a1f14 0%,#1e3a28 40%,#2d5a40 70%,#1a3020 100%)}
+.ph::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 65% 35%,rgba(74,124,90,.2) 0%,transparent 60%)}
+.ph-c{position:relative;z-index:1}
+.ph h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.8rem);color:var(--cream);font-weight:400;line-height:1.1}
+.ph p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:rgba(245,240,220,.6);margin-top:.5rem}
+.story{display:grid;grid-template-columns:1fr 1fr}
+.sv{background:linear-gradient(135deg,#1e3a28 0%,#2d5a40 40%,#4a7c58 70%,#3a6448 100%);position:relative;min-height:400px}
+.sv::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 60%,rgba(201,162,82,.07) 0%,transparent 60%)}
+.sv-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;z-index:1}
+.sv-icon{font-size:4rem;opacity:.6}
+.sv-caption{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:rgba(245,240,220,.5);text-align:center;padding:0 2rem}
+.stxt{background:var(--fd);padding:5rem 4rem;display:flex;flex-direction:column;justify-content:center}
+.stxt .sl{color:rgba(201,162,82,.7)}
+.stxt .st{color:var(--cream)}
+.stxt p{font-size:.88rem;color:rgba(245,240,220,.62);line-height:1.85;margin-bottom:.9rem}
+.ami{background:var(--cream);padding:6rem 4rem}
+.ami-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3.5rem}
+.ac{background:#fff;border:1px solid var(--parch);padding:2.5rem;border-radius:4px;transition:all .3s}
+.ac:hover{border-color:var(--gold);box-shadow:0 12px 32px rgba(45,90,66,.1);transform:translateY(-4px)}
+.ac-ico{font-size:2rem;margin-bottom:1rem}
+.ac h3{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--txt);margin-bottom:.5rem}
+.ac p{font-size:.83rem;color:var(--tm);line-height:1.65}
+.loc-s{background:var(--fd);padding:6rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.loc-map{height:300px;border-radius:4px;border:1px solid rgba(201,162,82,.2);background:linear-gradient(135deg,#0a1a10 0%,#1a3020 40%,#2a4a30 70%,#3a5a40 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.loc-map::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(201,162,82,.06) 0%,transparent 60%)}
+.map-pin{display:flex;flex-direction:column;align-items:center;gap:.5rem;z-index:1}
+.map-pin-dot{width:14px;height:14px;background:var(--gold);border-radius:50%;box-shadow:0 0 0 0 rgba(201,162,82,.4);animation:pp 2.5s ease-in-out infinite}
+@keyframes pp{0%{box-shadow:0 0 0 0 rgba(201,162,82,.4)}70%{box-shadow:0 0 0 20px rgba(201,162,82,0)}100%{box-shadow:0 0 0 0 rgba(201,162,82,0)}}
+.map-lbl{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.map-sublbl{font-size:.58rem;color:rgba(245,240,220,.4);text-align:center}
+.loc-d .sl{color:rgba(201,162,82,.7)}
+.loc-d .st{color:var(--cream)}
+.loc-list{list-style:none;margin-top:1.5rem;display:flex;flex-direction:column;gap:.75rem}
+.loc-list li{display:flex;gap:.75rem;align-items:flex-start;font-size:.83rem;color:rgba(245,240,220,.6)}
+.loc-list li::before{content:'→';color:var(--gold);flex-shrink:0}
+
+/* ── ROOMS PAGE ── */
+.rooms-hero{background:linear-gradient(160deg,#0a1408 0%,#1a2a10 40%,#2a4018 70%,#1e3010 100%)}
+.rooms-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2.5rem;padding:5rem 4rem;background:var(--cream)}
+.rc{background:#fff;border:1px solid var(--parch);border-radius:6px;overflow:hidden;transition:all .35s}
+.rc:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(30,58,47,.15);border-color:var(--gold)}
+.ri{height:220px;position:relative;overflow:hidden}
+.ri-bg{width:100%;height:100%;transition:transform .6s ease}
+.rc:hover .ri-bg{transform:scale(1.07)}
+.r1{background:linear-gradient(135deg,#0a1f14 0%,#1e3a28 40%,#2d5a40 70%,#4a7858 100%)}
+.r2{background:linear-gradient(135deg,#081418 0%,#142838 40%,#1e3a50 70%,#2a5068 100%)}
+.r3{background:linear-gradient(135deg,#180f00 0%,#2a1808 30%,#4a2a10 60%,#6a3a18 85%,#8b5030 100%)}
+.r4{background:linear-gradient(135deg,#0f1408 0%,#1a2810 30%,#2a3a18 60%,#4a5428 100%)}
+.rbadge{position:absolute;top:1rem;right:1rem;background:var(--gold);color:var(--fd);font-size:.58rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:2px}
+.rc-body{padding:1.8rem 2rem}
+.rc-name{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--txt);margin-bottom:.35rem}
+.rc-tag{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.9rem;color:var(--tl);margin-bottom:1.2rem}
+.rc-feats{list-style:none;display:flex;flex-direction:column;gap:5px;margin-bottom:1.5rem}
+.rc-feats li{font-size:.78rem;color:var(--tm);display:flex;gap:.5rem}
+.rc-feats li::before{content:'✓';color:var(--gold);font-weight:bold;flex-shrink:0}
+.rc-foot{display:flex;justify-content:space-between;align-items:center;padding-top:1.2rem;border-top:1px solid var(--parch)}
+.rp{font-family:'Playfair Display',serif}
+.rp-n{font-size:1.5rem;color:var(--f)}
+.rp-l{font-size:.62rem;color:var(--tl);letter-spacing:.06em;display:block;margin-top:1px}
+.btn-book{background:var(--f);color:var(--cream);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;border:none;padding:10px 20px;cursor:pointer;border-radius:2px;transition:all .25s}
+.btn-book:hover{background:var(--fm);transform:translateY(-2px)}
+.inc-tbl-sec{background:var(--f);padding:6rem 4rem}
+.inc-tbl-sec .sl{color:rgba(201,162,82,.7)}
+.inc-tbl-sec .st{color:var(--cream)}
+.inc-tbl{width:100%;border-collapse:collapse;margin-top:3rem}
+.inc-tbl th{background:rgba(201,162,82,.12);border:1px solid rgba(201,162,82,.18);padding:.9rem 1.2rem;font-family:'Playfair Display',serif;font-size:.85rem;color:var(--gold);font-weight:500;text-align:center}
+.inc-tbl th:first-child{text-align:left}
+.inc-tbl td{border:1px solid rgba(255,255,255,.06);padding:.75rem 1.2rem;font-size:.8rem;color:rgba(245,240,220,.7);text-align:center}
+.inc-tbl td:first-child{text-align:left;color:rgba(245,240,220,.9)}
+.inc-tbl tr:nth-child(even) td{background:rgba(255,255,255,.025)}
+.cy{color:var(--gold);font-size:1.1rem}
+.cn{color:rgba(245,240,220,.2);font-size:1rem}
+
+/* ── BOOKING ── */
+.book-wrap{background:var(--cream);padding:8rem 4rem 6rem;min-height:100vh;display:grid;grid-template-columns:3fr 2fr;gap:5rem;align-items:start}
+.bk-title{font-family:'Playfair Display',serif;font-size:2.6rem;color:var(--txt);margin-bottom:.4rem}
+.bk-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--tm);margin-bottom:3rem}
+.fst{font-family:'Playfair Display',serif;font-size:.85rem;font-weight:500;color:var(--f);letter-spacing:.08em;text-transform:uppercase;margin:2.2rem 0 1.2rem;padding-bottom:.5rem;border-bottom:1px solid var(--parch)}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fg{margin-bottom:1.2rem}
+.fg label{display:block;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--tm);margin-bottom:6px}
+.fg input,.fg select,.fg textarea{width:100%;background:#fff;border:1px solid var(--parch);padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:.88rem;color:var(--txt);border-radius:3px;transition:border-color .2s;outline:none;appearance:none;-webkit-appearance:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,162,82,.1)}
+.fg textarea{resize:vertical;min-height:90px}
+.room-opts{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.2rem}
+.ro{border:1px solid var(--parch);border-radius:3px;padding:1rem;cursor:pointer;transition:all .2s;background:#fff}
+.ro:hover{border-color:var(--gold)}
+.ro.sel{border-color:var(--gold);background:var(--gp)}
+.ro-name{font-family:'Playfair Display',serif;font-size:.85rem;color:var(--txt);margin-bottom:3px}
+.ro-price{font-size:.7rem;color:var(--tm)}
+.occ-grid{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.2rem}
+.occ{border:1px solid var(--parch);background:#fff;padding:6px 14px;border-radius:20px;font-size:.7rem;cursor:pointer;transition:all .2s;color:var(--tm)}
+.occ:hover,.occ.sel{border-color:var(--gold);background:var(--gp);color:var(--earth)}
+.submit-row{display:flex;gap:1rem;margin-top:2rem}
+.btn-wa{display:flex;align-items:center;justify-content:center;gap:8px;background:#25D366;color:#fff;border:none;padding:14px 22px;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;letter-spacing:.08em;border-radius:3px;cursor:pointer;transition:all .25s;flex:1}
+.btn-wa:hover{background:#20b857;transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.3)}
+.bk-sum{background:var(--fd);border:1px solid rgba(201,162,82,.2);border-radius:6px;padding:2rem;position:sticky;top:100px}
+.bs-ttl{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--cream);margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(201,162,82,.2)}
+.bsi{display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem}
+.bsi-l{font-size:.68rem;color:rgba(245,240,220,.45)}
+.bsi-v{font-family:'Playfair Display',serif;font-size:.85rem;color:var(--cream)}
+.bs-tot{margin-top:1.5rem;padding-top:1rem;border-top:1px solid rgba(201,162,82,.2)}
+.bs-tot .bsi-l{font-size:.75rem;color:var(--gold)}
+.bs-tot .bsi-v{font-size:1.4rem;color:var(--gold)}
+.bs-note{margin-top:1.5rem;font-size:.68rem;color:rgba(245,240,220,.35);line-height:1.65;font-style:italic}
+.bs-con{margin-top:1.5rem;padding:1rem;background:rgba(201,162,82,.07);border:1px solid rgba(201,162,82,.18);border-radius:3px}
+.bs-con-l{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(201,162,82,.65);margin-bottom:5px}
+.bs-con-v{font-size:.82rem;color:var(--cream)}
+
+/* ── FOOTER ── */
+footer{background:#060f0a;padding:4rem;border-top:1px solid rgba(201,162,82,.12)}
+.fi{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;max-width:1200px;margin:0 auto}
+.fl-logo{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--cream);margin-bottom:.7rem}
+.fl-logo span{color:var(--gold)}
+.fl-tag{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.88rem;color:rgba(245,240,220,.4);line-height:1.5;max-width:220px}
+.fc-ttl{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
+.fc-links{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.fc-links a{font-size:.8rem;color:rgba(245,240,220,.45);text-decoration:none;cursor:pointer;transition:color .2s}
+.fc-links a:hover{color:var(--gold)}
+.fb{margin-top:3rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;align-items:center;font-size:.68rem;color:rgba(245,240,220,.2)}
+.fb a{color:var(--gold);text-decoration:none}
+
+/* ── WA FAB ── */
+.wa-fab{position:fixed;bottom:2rem;right:2rem;z-index:900;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(37,211,102,.4);cursor:pointer;transition:all .25s;text-decoration:none;animation:fab 3s ease-in-out infinite}
+.wa-fab:hover{transform:scale(1.1);box-shadow:0 12px 32px rgba(37,211,102,.5)}
+@keyframes fab{0%,75%,100%{transform:translateY(0)}85%{transform:translateY(-8px)}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  .hero-title{font-size:2.8rem}
+  .why,.story,.loc-s{grid-template-columns:1fr}
+  .sv{min-height:220px}
+  .gg{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .gi:nth-child(1){grid-row:auto}
+  .incl-grid,.ami-grid{grid-template-columns:repeat(3,1fr)}
+  .rooms-grid{grid-template-columns:1fr;padding:3rem 1.5rem}
+  .book-wrap{grid-template-columns:1fr;padding:6rem 1.5rem 4rem;gap:3rem}
+  .fi{grid-template-columns:1fr 1fr;gap:2rem}
+  .stats{flex-wrap:wrap;padding:1.5rem 2rem}
+  section,.ami,.inc-tbl-sec,.dasara,.ph{padding-left:1.5rem;padding-right:1.5rem}
+  .why-l,.why-r,.stxt,.loc-d{padding:3.5rem 1.5rem}
+  .fr,.room-opts{grid-template-columns:1fr}
+  .bk-title{font-size:2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav" id="mainNav">
+  <a class="nav-logo" onclick="showPage('home')">
+    <div class="logo-mark">🌿</div>
+    <span>The <span>Stream</span> Leaf</span>
+  </a>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" id="nl-home" class="active">Home</a></li>
+    <li><a onclick="showPage('resort')" id="nl-resort">The Resort</a></li>
+    <li><a onclick="showPage('rooms')" id="nl-rooms">Rooms & Stays</a></li>
+    <li><a onclick="showPage('book')" id="nl-book">Book Now</a></li>
+  </ul>
+  <button class="nav-cta" onclick="showPage('book')">Check Availability</button>
+</nav>
+
+<!-- ══════════════════ HOME ══════════════════ -->
+<div id="page-home" class="page active">
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-mist"></div>
+    <div class="leaf"></div><div class="leaf"></div><div class="leaf"></div>
+    <div class="leaf"></div><div class="leaf"></div>
+    <div class="hero-vline"></div><div class="hero-vline"></div>
+
+    <div class="hero-content">
+      <p class="hero-tag">Mysore · Karnataka · Est. 2019</p>
+      <h1 class="hero-title">Where the forest<br>meets your <em>rest</em></h1>
+      <p class="hero-sub">A private resort that feeds you, shelters you,<br>and lets you breathe again</p>
+      <div class="hero-ctas">
+        <button class="btn-primary" onclick="showPage('book')">Book Your Stay</button>
+        <button class="btn-outline" onclick="showPage('resort')">Explore the Resort</button>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span class="hero-scroll-txt">Scroll to explore</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <div class="dasara">
+    <p>🪔 <strong>Dasara 2025 Special Package</strong> — Book your Mysore Dasara experience now. Limited rooms available for October. <strong>Early bird: 10% off</strong></p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-n">5+</div><div class="stat-l">Years Running</div></div>
+    <div class="stat"><div class="stat-n">All</div><div class="stat-l">Meals Included</div></div>
+    <div class="stat"><div class="stat-n">132+</div><div class="stat-l">Happy Reviews</div></div>
+    <div class="stat"><div class="stat-n">1</div><div class="stat-l">Family. Your Hosts.</div></div>
+  </div>
+
+  <!-- WHY -->
+  <div class="why">
+    <div class="why-l">
+      <p class="sl">Why The Stream Leaf</p>
+      <h2 class="st">Not managed. Personally hosted.</h2>
+      <div class="sdiv"></div>
+      <p class="ss">We are not an agency-run resort. The owners are here — from your welcome tea to your breakfast the next morning. That is not a policy. That is who we are.</p>
+    </div>
+    <div class="why-r">
+      <div class="why-card">
+        <div class="wi">🍽️</div>
+        <div class="wt"><h3>Full Board — All Meals Included</h3><p>Every stay includes breakfast, lunch, evening snacks and dinner. Home-cooked, fresh, and abundant. You never have to think about food.</p></div>
+      </div>
+      <div class="why-card">
+        <div class="wi">🌿</div>
+        <div class="wt"><h3>Nature. Quiet. Real Rest.</h3><p>Ramabai Nagar, Outer Ring Road — far enough from the city noise, close enough for a 3-hour drive from Bangalore.</p></div>
+      </div>
+      <div class="why-card">
+        <div class="wi">👨‍👩‍👧</div>
+        <div class="wt"><h3>Families, Couples & Groups Welcome</h3><p>Weekend family trips, anniversary getaways, corporate offsites — we host them all personally and make them memorable.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <div class="gallery">
+    <div class="gallery-head">
+      <p class="sl">A Glimpse</p>
+      <h2 class="st">The Stream Leaf Experience</h2>
+      <div class="sdiv"></div>
+    </div>
+    <div class="gg">
+      <div class="gi"><div class="gi-bg g1"></div><div class="gi-ov"><span class="gi-lbl">Morning in the Forest</span></div></div>
+      <div class="gi"><div class="gi-bg g2"></div><div class="gi-ov"><span class="gi-lbl">Sunset Dinner</span></div></div>
+      <div class="gi"><div class="gi-bg g3"></div><div class="gi-ov"><span class="gi-lbl">The Stream at Dawn</span></div></div>
+      <div class="gi"><div class="gi-bg g4"></div><div class="gi-ov"><span class="gi-lbl">Cottage Warmth</span></div></div>
+      <div class="gi"><div class="gi-bg g5"></div><div class="gi-ov"><span class="gi-lbl">Evening Bonfire</span></div></div>
+    </div>
+  </div>
+
+  <!-- INCLUSIVE -->
+  <div class="incl">
+    <p class="sl">Everything Included</p>
+    <h2 class="st">One price. No surprises.</h2>
+    <div class="sdiv"></div>
+    <p class="ss" style="text-align:center;margin:0 auto;">From the moment you check in to the moment you leave, everything is taken care of.</p>
+    <div class="incl-grid">
+      <div class="ic"><div class="ic-ico">☕</div><div class="ic-ttl">Welcome Tea</div><div class="ic-sub">On arrival</div></div>
+      <div class="ic"><div class="ic-ico">🍳</div><div class="ic-ttl">Breakfast</div><div class="ic-sub">Fresh daily</div></div>
+      <div class="ic"><div class="ic-ico">🍛</div><div class="ic-ttl">Lunch & Dinner</div><div class="ic-sub">Home cooked</div></div>
+      <div class="ic"><div class="ic-ico">🔥</div><div class="ic-ttl">Evening Bonfire</div><div class="ic-sub">Seasonal</div></div>
+      <div class="ic"><div class="ic-ico">🚶</div><div class="ic-ttl">Nature Walk</div><div class="ic-sub">Guided</div></div>
+      <div class="ic"><div class="ic-ico">🅿️</div><div class="ic-ttl">Free Parking</div><div class="ic-sub">Secure</div></div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <div class="testi">
+    <p class="sl">Guest Stories</p>
+    <div id="tq" class="tq">We came for a weekend, stayed for the memories. The food alone was worth every kilometre from Bangalore.</div>
+    <div class="ta" id="ta">— Priya &amp; Karthik · Bangalore</div>
+    <div class="tdots">
+      <div class="td active" onclick="setTesti(0)"></div>
+      <div class="td" onclick="setTesti(1)"></div>
+      <div class="td" onclick="setTesti(2)"></div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-sec">
+    <p class="sl" style="text-align:center">Plan Your Visit</p>
+    <h2 class="st" style="max-width:none;text-align:center;margin:0 auto">Ready for a real break?</h2>
+    <div class="sdiv" style="margin:1.5rem auto"></div>
+    <p>12 PM check-in · Checkout next morning 11 AM · All meals included</p>
+    <button class="btn-primary" onclick="showPage('book')">Book Your Stay Now</button>
+  </div>
+
+</div>
+
+<!-- ══════════════════ RESORT ══════════════════ -->
+<div id="page-resort" class="page">
+
+  <div class="ph ph-1" style="min-height:60vh">
+    <div class="ph-c">
+      <h1>The Resort</h1>
+      <p>Where every corner invites you to slow down</p>
+    </div>
+  </div>
+
+  <div class="story">
+    <div class="sv">
+      <div class="sv-overlay">
+        <div class="sv-icon">🌊</div>
+        <div class="sv-caption">The stream that gives<br>this place its name</div>
+      </div>
+    </div>
+    <div class="stxt">
+      <p class="sl">Our Story</p>
+      <h2 class="st">Built by family.<br>Run by family.</h2>
+      <div class="sdiv"></div>
+      <p>The Stream Leaf was built five years ago with a simple idea — to create a place near Mysore where families from Bangalore could come and truly rest. Not a managed hotel. Not a franchise. A personal space.</p>
+      <p>The property is named for the small stream that borders the grounds. In the early mornings, you hear it before you see it. We think that's how a weekend should begin.</p>
+      <p>After years of learning what our guests truly need, the founding family has personally taken back management of every aspect of The Stream Leaf — from the kitchen to the guest rooms. What you experience here is ours to own, and ours to improve.</p>
+    </div>
+  </div>
+
+  <div class="ami">
+    <p class="sl">The Experience</p>
+    <h2 class="st">Everything you need.<br>Nothing you don't.</h2>
+    <div class="sdiv"></div>
+    <div class="ami-grid">
+      <div class="ac"><div class="ac-ico">🍽️</div><h3>All-Inclusive Dining</h3><p>Welcome tea, breakfast, full lunch, evening snacks and a sit-down dinner. Home recipes, seasonal ingredients, prepared fresh daily.</p></div>
+      <div class="ac"><div class="ac-ico">🌿</div><h3>Nature & Outdoors</h3><p>Nature walks on the property, open lawns, stream views and an outdoor bonfire area. The evenings here are something else.</p></div>
+      <div class="ac"><div class="ac-ico">🏡</div><h3>Comfortable Rooms</h3><p>Clean, well-maintained rooms and cottages with attached bathrooms, hot water and all basic amenities. No frills, no pretension.</p></div>
+      <div class="ac"><div class="ac-ico">👨‍👩‍👧‍👦</div><h3>Family-Friendly</h3><p>Open spaces for children, safe environment and a host family that genuinely cares whether your kids are having fun.</p></div>
+      <div class="ac"><div class="ac-ico">💼</div><h3>Corporate Offsites</h3><p>Quiet setting, open spaces, and the ability to accommodate groups of 20–40 guests for team retreats and annual offsites.</p></div>
+      <div class="ac"><div class="ac-ico">📍</div><h3>Perfect Location</h3><p>Ramabai Nagar, Outer Ring Road, Mysore. Under 3 hours from Bangalore. Easy access, private setting.</p></div>
+    </div>
+  </div>
+
+  <div class="loc-s">
+    <div class="loc-map">
+      <div class="map-pin">
+        <div class="map-pin-dot"></div>
+        <div class="map-lbl">The Stream Leaf</div>
+        <div class="map-sublbl">Ramabai Nagar · Mysore</div>
+      </div>
+    </div>
+    <div class="loc-d">
+      <p class="sl">How to Reach Us</p>
+      <h2 class="st" style="color:var(--cream)">Near Outer Ring Road,<br>Ramabai Nagar, Mysore</h2>
+      <div class="sdiv"></div>
+      <ul class="loc-list">
+        <li>~150 km from Bangalore city centre — approx. 3 hours by road</li>
+        <li>Take Mysore Road (NH 275) — well connected via NICE Road and Tumkur Road</li>
+        <li>Nearest landmark: Outer Ring Road, Ramabai Nagar, Mysore 570008</li>
+        <li>Detailed directions and Google Maps pin shared on booking confirmation</li>
+        <li>Cab drops and airport pickups can be arranged on request</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════ ROOMS ══════════════════ -->
+<div id="page-rooms" class="page">
+
+  <div class="ph rooms-hero" style="min-height:55vh">
+    <div class="ph-c">
+      <h1>Rooms & Stays</h1>
+      <p>Every room includes all meals · 12 PM check-in · 11 AM checkout</p>
+    </div>
+  </div>
+
+  <div class="rooms-grid">
+    <div class="rc">
+      <div class="ri"><div class="ri-bg r1"></div><div class="rbadge">Most Popular</div></div>
+      <div class="rc-body">
+        <div class="rc-name">Forest Room</div>
+        <div class="rc-tag">A cosy garden-view retreat for two</div>
+        <ul class="rc-feats">
+          <li>Attached bathroom with hot water</li>
+          <li>Garden view · Quiet, ventilated</li>
+          <li>All meals included (5 a day)</li>
+          <li>Bonfire access · Nature walk</li>
+        </ul>
+        <div class="rc-foot">
+          <div class="rp"><div class="rp-n">₹2,800<span style="font-size:.9rem;color:var(--tm)">/person</span></div><span class="rp-l">Per night · All inclusive</span></div>
+          <button class="btn-book" onclick="gotoBookRoom('Forest Room')">Book Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="rc">
+      <div class="ri"><div class="ri-bg r2"></div><div class="rbadge">Romantic Pick</div></div>
+      <div class="rc-body">
+        <div class="rc-name">Stream Cottage</div>
+        <div class="rc-tag">Overlooks the stream · For couples</div>
+        <ul class="rc-feats">
+          <li>Private cottage with stream view</li>
+          <li>Sit-out / private verandah</li>
+          <li>All meals included + special dinner</li>
+          <li>Personalised hosting · Evening bonfire</li>
+        </ul>
+        <div class="rc-foot">
+          <div class="rp"><div class="rp-n">₹3,600<span style="font-size:.9rem;color:var(--tm)">/person</span></div><span class="rp-l">Per night · All inclusive</span></div>
+          <button class="btn-book" onclick="gotoBookRoom('Stream Cottage')">Book Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="rc">
+      <div class="ri"><div class="ri-bg r3"></div><div class="rbadge">Family Favourite</div></div>
+      <div class="rc-body">
+        <div class="rc-name">Family Suite</div>
+        <div class="rc-tag">Spacious · Up to 6 guests</div>
+        <ul class="rc-feats">
+          <li>Large suite, multiple sleeping areas</li>
+          <li>Dedicated host for the family</li>
+          <li>All meals · Kids menu available</li>
+          <li>Lawn access · Outdoor seating</li>
+        </ul>
+        <div class="rc-foot">
+          <div class="rp"><div class="rp-n">₹2,400<span style="font-size:.9rem;color:var(--tm)">/person</span></div><span class="rp-l">Minimum 4 guests · All inclusive</span></div>
+          <button class="btn-book" onclick="gotoBookRoom('Family Suite')">Book Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="rc">
+      <div class="ri"><div class="ri-bg r4"></div><div class="rbadge">Group / Offsite</div></div>
+      <div class="rc-body">
+        <div class="rc-name">Group Package</div>
+        <div class="rc-tag">Full resort · 20–40 guests</div>
+        <ul class="rc-feats">
+          <li>Exclusive resort booking</li>
+          <li>Corporate retreat / team offsite ready</li>
+          <li>All meals · Custom menu available</li>
+          <li>Event coordination included</li>
+        </ul>
+        <div class="rc-foot">
+          <div class="rp"><div class="rp-n">Custom</div><span class="rp-l">Pricing on request</span></div>
+          <button class="btn-book" onclick="gotoBookRoom('Group Package')">Enquire Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inc-tbl-sec">
+    <p class="sl">What's Included — By Room Type</p>
+    <h2 class="st" style="color:var(--cream)">All stays are fully inclusive</h2>
+    <div class="sdiv"></div>
+    <table class="inc-tbl">
+      <thead>
+        <tr>
+          <th>Inclusion</th>
+          <th>Forest Room</th>
+          <th>Stream Cottage</th>
+          <th>Family Suite</th>
+          <th>Group Package</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Welcome Tea / Snacks</td><td><span class="cy">✓</span></td><td><span class="cy">✓</span></td><td><span class="cy">✓</span></td><td><span class="cy">✓</span></td></tr>
+        <tr><td>Breakfast</td><td><span class="cy">✓</span></td><td><span class="cy">✓</span></td><td><span class="cy">✓</span></td><td><span class="cy">✓</span></td></tr>
+        <tr><td>Lunch</td><td><span class="cy">✓</span></td><td><span class="cy">✓</span></td><td><span class="cy">✓</span></td><td><span class="cy">✓</span></td></tr>
+        <tr><td>Dinner</td><td><span class="cy">✓</span></td><td><span class="cy">✓</span></td><td><span class="cy">✓</span></td><td><span class="cy">✓</span></td></tr>
+        <tr><td>Evening Bonfire</td><td><span class="cy">✓</span></td><td><span class="cy">✓</span></td><td><span class="cy">✓</span></td><td><span class="cy">✓</span></td></tr>
+        <tr><td>Nature Walk</td><td><span class="cy">✓</span></td><td><span class="cy">✓</span></td><td><span class="cy">✓</span></td><td><span class="cy">✓</span></td></tr>
+        <tr><td>Dedicated Host</td><td><span class="cn">—</span></td><td><span class="cy">✓</span></td><td><span class="cy">✓</span></td><td><span class="cy">✓</span></td></tr>
+        <tr><td>Private Verandah</td><td><span class="cn">—</span></td><td><span class="cy">✓</span></td><td><span class="cn">—</span></td><td><span class="cn">—</span></td></tr>
+        <tr><td>Event Coordination</td><td><span class="cn">—</span></td><td><span class="cn">—</span></td><td><span class="cn">—</span></td><td><span class="cy">✓</span></td></tr>
+        <tr><td>Special Anniversary Decor</td><td><span class="cn">—</span></td><td><span class="cy">✓</span></td><td><span class="cy">On Request</span></td><td><span class="cy">✓</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ══════════════════ BOOKING ══════════════════ -->
+<div id="page-book" class="page">
+  <div class="book-wrap">
+    <div class="booking-form-section">
+      <h1 class="bk-title">Book Your Stay</h1>
+      <p class="bk-sub">All meals included · 12 PM Check-in · 11 AM Checkout</p>
+
+      <div class="fst">Stay Dates & Guests</div>
+      <div class="fr">
+        <div class="fg"><label>Check-In Date</label><input type="date" id="checkin" onchange="updateSummary()"></div>
+        <div class="fg"><label>Check-Out Date</label><input type="date" id="checkout" onchange="updateSummary()"></div>
+      </div>
+      <div class="fr">
+        <div class="fg"><label>Adults</label><select id="adults" onchange="updateSummary()"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
+        <div class="fg"><label>Children</label><select id="children" onchange="updateSummary()"><option selected>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select></div>
+      </div>
+
+      <div class="fst">Select Room Type</div>
+      <div class="room-opts">
+        <div class="ro sel" id="ro-forest" onclick="selRoom('Forest Room',2800)"><div class="ro-name">Forest Room</div><div class="ro-price">₹2,800 / person · night</div></div>
+        <div class="ro" id="ro-stream" onclick="selRoom('Stream Cottage',3600)"><div class="ro-name">Stream Cottage</div><div class="ro-price">₹3,600 / person · night</div></div>
+        <div class="ro" id="ro-family" onclick="selRoom('Family Suite',2400)"><div class="ro-name">Family Suite</div><div class="ro-price">₹2,400 / person · night (min 4)</div></div>
+        <div class="ro" id="ro-group" onclick="selRoom('Group Package',0)"><div class="ro-name">Group Package</div><div class="ro-price">Custom pricing on request</div></div>
+      </div>
+
+      <div class="fst">Special Occasion?</div>
+      <div class="occ-grid">
+        <div class="occ" onclick="selOcc(this, '')">None</div>
+        <div class="occ" onclick="selOcc(this, 'Anniversary')">💑 Anniversary</div>
+        <div class="occ" onclick="selOcc(this, 'Birthday')">🎂 Birthday</div>
+        <div class="occ" onclick="selOcc(this, 'Family Reunion')">👨‍👩‍👧 Family Reunion</div>
+        <div class="occ" onclick="selOcc(this, 'Corporate Offsite')">💼 Corporate Offsite</div>
+        <div class="occ" onclick="selOcc(this, 'Honeymoon')">🌸 Honeymoon</div>
+      </div>
+
+      <div class="fst">Your Details</div>
+      <div class="fr">
+        <div class="fg"><label>Full Name</label><input type="text" id="fname" placeholder="Your name" onchange="updateSummary()"></div>
+        <div class="fg"><label>WhatsApp Number</label><input type="tel" id="fphone" placeholder="+91 00000 00000" onchange="updateSummary()"></div>
+      </div>
+      <div class="fg"><label>Email (Optional)</label><input type="email" id="femail" placeholder="your@email.com"></div>
+
+      <div class="fst">Anything to Tell Us?</div>
+      <div class="fg"><label>Special Requests</label><textarea id="freqs" placeholder="Dietary needs, accessibility requirements, celebration details, preferred room location..."></textarea></div>
+
+      <div class="submit-row">
+        <button class="btn-wa" onclick="bookWA()">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Confirm via WhatsApp
+        </button>
+        <button class="btn-primary" onclick="bookWA()" style="flex:0.6;border-radius:3px">Send Enquiry</button>
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="bk-sum">
+      <div class="bs-ttl">Booking Summary</div>
+      <div class="bsi"><span class="bsi-l">Check-In</span><span class="bsi-v" id="s-ci">—</span></div>
+      <div class="bsi"><span class="bsi-l">Check-Out</span><span class="bsi-v" id="s-co">—</span></div>
+      <div class="bsi"><span class="bsi-l">Guests</span><span class="bsi-v" id="s-guests">2 Adults</span></div>
+      <div class="bsi"><span class="bsi-l">Room Type</span><span class="bsi-v" id="s-room">Forest Room</span></div>
+      <div class="bsi"><span class="bsi-l">Rate</span><span class="bsi-v" id="s-rate">₹2,800 / person</span></div>
+      <div class="bsi"><span class="bsi-l">Nights</span><span class="bsi-v" id="s-nights">—</span></div>
+      <div class="bs-tot">
+        <div class="bsi"><span class="bsi-l">Estimated Total</span><span class="bsi-v" id="s-total">—</span></div>
+      </div>
+      <p class="bs-note">All meals included. No hidden charges. 50% advance to confirm booking. Balance at check-in.</p>
+      <div class="bs-con">
+        <div class="bs-con-l">Direct Contact</div>
+        <div class="bs-con-v">+91 97399 91687</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer>
+  <div class="fi">
+    <div>
+      <div class="fl-logo"><span>The Stream Leaf</span></div>
+      <div class="fl-tag">Mysore's most personal resort. Where every meal is made for you, and every moment belongs to you.</div>
+    </div>
+    <div>
+      <div class="fc-ttl">Explore</div>
+      <ul class="fc-links">
+        <li><a onclick="showPage('home')">Home</a></li>
+        <li><a onclick="showPage('resort')">The Resort</a></li>
+        <li><a onclick="showPage('rooms')">Rooms & Stays</a></li>
+        <li><a onclick="showPage('book')">Book Now</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fc-ttl">Stay Types</div>
+      <ul class="fc-links">
+        <li><a>Forest Room</a></li>
+        <li><a>Stream Cottage</a></li>
+        <li><a>Family Suite</a></li>
+        <li><a>Group Package</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fc-ttl">Contact</div>
+      <ul class="fc-links">
+        <li><a>+91 XXXXX XXXXX</a></li>
+        <li><a>Ramabai Nagar</a></li>
+        <li><a>Outer Ring Road, Mysore</a></li>
+        <li><a style="color:#25D366">WhatsApp Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fb">
+    <span>© 2025 The Stream Leaf, Mysore. All rights reserved.</span>
+    <span>Digital presence by <a href="https://lycogent.com" target="_blank">Lycogent Systems</a></span>
+  </div>
+</footer>
+
+<!-- WA FAB -->
+<a class="wa-fab" href="https://wa.me/919739991687?text=Hi%2C%20I'd%20like%20to%20enquire%20about%20booking%20The%20Stream%20Leaf" target="_blank">
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// ── PAGE ROUTING ──────────────────────────────────────────────
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const nl = document.getElementById('nl-' + id);
+  if (nl) nl.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── NAV SCROLL ────────────────────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ── TESTIMONIALS ─────────────────────────────────────────────
+const TESTIS = [
+  { q: 'We came for a weekend, stayed for the memories. The food alone was worth every kilometre from Bangalore.', a: '— Priya & Karthik · Bangalore' },
+  { q: 'First time here was three years ago. We keep coming back. It is the only place where we truly switch off.', a: '— The Murthy Family · Bangalore' },
+  { q: 'Perfect for our team offsite. 20 of us, zero complaints. Will definitely book again for Dasara.', a: '— Suresh R, IT Manager · Bangalore' }
+];
+let curT = 0;
+function setTesti(i) {
+  curT = i;
+  document.getElementById('tq').textContent = TESTIS[i].q;
+  document.getElementById('ta').textContent = TESTIS[i].a;
+  document.querySelectorAll('.td').forEach((d,j) => d.classList.toggle('active', j===i));
+}
+setInterval(() => setTesti((curT + 1) % 3), 4500);
+
+// ── ROOM SELECTION ────────────────────────────────────────────
+let selRoomName = 'Forest Room', selRoomRate = 2800;
+const roomIds = { 'Forest Room':'ro-forest','Stream Cottage':'ro-stream','Family Suite':'ro-family','Group Package':'ro-group' };
+function selRoom(name, rate) {
+  selRoomName = name; selRoomRate = rate;
+  document.querySelectorAll('.ro').forEach(r => r.classList.remove('sel'));
+  document.getElementById(roomIds[name]).classList.add('sel');
+  document.getElementById('s-room').textContent = name;
+  document.getElementById('s-rate').textContent = rate ? '₹' + rate.toLocaleString('en-IN') + ' / person' : 'Custom pricing';
+  updateSummary();
+}
+
+// ── OCCASION SELECTION ────────────────────────────────────────
+let selOccasion = '';
+function selOcc(el, val) {
+  selOccasion = val;
+  document.querySelectorAll('.occ').forEach(o => o.classList.remove('sel'));
+  el.classList.add('sel');
+}
+
+// ── BOOKING SUMMARY ───────────────────────────────────────────
+function updateSummary() {
+  const ci = document.getElementById('checkin').value;
+  const co = document.getElementById('checkout').value;
+  const adults = parseInt(document.getElementById('adults').value) || 2;
+  const children = parseInt(document.getElementById('children').value) || 0;
+  document.getElementById('s-ci').textContent = ci ? fmtDate(ci) : '—';
+  document.getElementById('s-co').textContent = co ? fmtDate(co) : '—';
+  document.getElementById('s-guests').textContent = adults + ' Adult' + (adults > 1 ? 's' : '') + (children ? ', ' + children + ' Child' + (children > 1 ? 'ren' : '') : '');
+  if (ci && co) {
+    const nights = Math.max(0, Math.round((new Date(co) - new Date(ci)) / 86400000));
+    document.getElementById('s-nights').textContent = nights + ' night' + (nights !== 1 ? 's' : '');
+    if (selRoomRate && nights > 0) {
+      const total = selRoomRate * adults * nights;
+      document.getElementById('s-total').textContent = '₹' + total.toLocaleString('en-IN');
+    } else if (!selRoomRate) {
+      document.getElementById('s-total').textContent = 'On request';
+    } else { document.getElementById('s-total').textContent = '—'; }
+  } else { document.getElementById('s-nights').textContent = '—'; document.getElementById('s-total').textContent = '—'; }
+}
+function fmtDate(d) {
+  const dt = new Date(d); return dt.toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' });
+}
+
+// ── WHATSAPP BOOKING ──────────────────────────────────────────
+function bookWA() {
+  const ci = document.getElementById('checkin').value;
+  const co = document.getElementById('checkout').value;
+  const adults = document.getElementById('adults').value;
+  const children = document.getElementById('children').value;
+  const name = document.getElementById('fname').value;
+  const phone = document.getElementById('fphone').value;
+  const reqs = document.getElementById('freqs').value;
+  if (!ci || !co) { alert('Please select your check-in and check-out dates.'); return; }
+  if (!name) { alert('Please enter your name.'); return; }
+  let msg = `Hello! I'd like to book The Stream Leaf 🌿\n\n*Booking Details:*\n✅ Check-in: ${fmtDate(ci)}\n✅ Check-out: ${fmtDate(co)}\n✅ Guests: ${adults} Adults${parseInt(children)>0 ? ', '+children+' Children' : ''}\n✅ Room: ${selRoomName}\n${selOccasion ? '🎉 Occasion: '+selOccasion+'\n' : ''}\n*My Details:*\nName: ${name}\nPhone: ${phone || 'To be shared'}${reqs ? '\n\nSpecial Requests: '+reqs : ''}`;
+  window.open('https://wa.me/919739991687?text=' + encodeURIComponent(msg), '_blank');
+}
+
+// ── ROOM → BOOK ───────────────────────────────────────────────
+function gotoBookRoom(roomName) {
+  const rates = { 'Forest Room': 2800, 'Stream Cottage': 3600, 'Family Suite': 2400, 'Group Package': 0 };
+  showPage('book');
+  setTimeout(() => selRoom(roomName, rates[roomName]), 100);
+}
+
+// ── SET DEFAULT DATES ─────────────────────────────────────────
+(function() {
+  const today = new Date();
+  const nextSat = new Date(today);
+  nextSat.setDate(today.getDate() + ((6 - today.getDay() + 7) % 7 || 7));
+  const nextSun = new Date(nextSat); nextSun.setDate(nextSat.getDate() + 1);
+  document.getElementById('checkin').value = nextSat.toISOString().split('T')[0];
+  document.getElementById('checkout').value = nextSun.toISOString().split('T')[0];
+  updateSummary();
+})();
+</script>
+
+</body>
+</html>
+
