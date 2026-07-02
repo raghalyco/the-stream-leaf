@@ -36,7 +36,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--txt);o
 
 /* ── HERO ── */
 .hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 20% 70%,rgba(74,124,90,.2) 0%,transparent 55%),radial-gradient(ellipse at 80% 25%,rgba(45,90,66,.15) 0%,transparent 50%),linear-gradient(172deg,#0a1f14 0%,#162e1f 30%,#0e2419 60%,#0a1a10 100%)}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 20% 70%,rgba(74,124,90,.2) 0%,transparent 55%),radial-gradient(ellipse at 80% 25%,rgba(45,90,66,.15) 0%,transparent 50%),linear-gradient(172deg,rgba(10,31,20,.9) 0%,rgba(22,46,31,.8) 30%,rgba(14,36,25,.86) 60%,rgba(10,26,16,.95) 100%),url('images/Top view of the garden.jpeg') center/cover no-repeat}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,31,20,.2) 0%,rgba(10,31,20,.45) 100%)}
 .hero-mist{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%,rgba(201,162,82,.05) 0%,transparent 65%);animation:mist 9s ease-in-out infinite alternate}
 @keyframes mist{from{opacity:.5;transform:scale(1)}to{opacity:1;transform:scale(1.04)}}
 .leaf{position:absolute;opacity:.1;background:var(--gl);clip-path:ellipse(50% 100% at 50% 100%);animation:lf 7s ease-in-out infinite}
@@ -97,17 +98,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--txt);o
 .gallery-head .st{color:var(--cream);max-width:none;text-align:center}
 .gallery-head .sdiv{margin:1.5rem auto}
 .gg{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:240px 240px;gap:3px}
-.gi{position:relative;overflow:hidden;cursor:pointer}
+.gi{position:relative;overflow:hidden;cursor:pointer;min-height:220px}
 .gi:nth-child(1){grid-row:1/3}
-.gi-bg{width:100%;height:100%;transition:transform .6s ease}
-.gi:hover .gi-bg{transform:scale(1.06)}
-.gi-bg.g1{background:linear-gradient(160deg,#0a1f14 0%,#1e3a28 35%,#2d5a40 65%,#4a7858 100%)}
-.gi-bg.g2{background:linear-gradient(135deg,#1a0f00 0%,#3a2008 30%,#6a3a10 60%,#c9802a 85%,#e8a040 100%)}
-.gi-bg.g3{background:linear-gradient(135deg,#0a1418 0%,#142838 35%,#1e3a50 70%,#2a5068 100%)}
-.gi-bg.g4{background:linear-gradient(135deg,#180f00 0%,#2a1808 30%,#4a2a10 60%,#7a5030 100%)}
-.gi-bg.g5{background:linear-gradient(135deg,#0f1408 0%,#1e2a10 30%,#2a3a18 60%,#4a5428 100%)}
-.gi-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,31,20,.7) 0%,transparent 55%);display:flex;align-items:flex-end;padding:1.4rem}
-.gi-lbl{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:rgba(245,240,220,.9)}
+.gi-image{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.gi:hover .gi-image{transform:scale(1.06)}
+.gi-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,31,20,.78) 0%,transparent 55%);display:flex;align-items:flex-end;padding:1.4rem}
+.gi-lbl{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:rgba(245,240,220,.95)}
+.resort-gallery{background:var(--cream);padding:4rem 4rem 6rem}
+.resort-gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.2rem}
+.resort-gallery-grid img{width:100%;height:220px;object-fit:cover;border-radius:8px;border:1px solid var(--parch);display:block}
 
 /* ── INCLUSIVE ── */
 .incl{background:var(--warm);padding:6rem 4rem;text-align:center}
@@ -148,11 +147,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--txt);o
 .ph h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.8rem);color:var(--cream);font-weight:400;line-height:1.1}
 .ph p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:rgba(245,240,220,.6);margin-top:.5rem}
 .story{display:grid;grid-template-columns:1fr 1fr}
-.sv{background:linear-gradient(135deg,#1e3a28 0%,#2d5a40 40%,#4a7c58 70%,#3a6448 100%);position:relative;min-height:400px}
-.sv::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 60%,rgba(201,162,82,.07) 0%,transparent 60%)}
+.sv{background:linear-gradient(135deg,#1e3a28 0%,#2d5a40 40%,#4a7c58 70%,#3a6448 100%);position:relative;min-height:400px;overflow:hidden}
+.sv-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.95}
+.sv::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,31,20,.75) 0%,rgba(10,31,20,.2) 60%,rgba(10,31,20,.34) 100%)}
 .sv-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;z-index:1}
-.sv-icon{font-size:4rem;opacity:.6}
-.sv-caption{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:rgba(245,240,220,.5);text-align:center;padding:0 2rem}
+.sv-icon{font-size:4rem;opacity:.85}
+.sv-caption{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:rgba(245,240,220,.9);text-align:center;padding:0 2rem}
 .stxt{background:var(--fd);padding:5rem 4rem;display:flex;flex-direction:column;justify-content:center}
 .stxt .sl{color:rgba(201,162,82,.7)}
 .stxt .st{color:var(--cream)}
@@ -161,6 +161,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--txt);o
 .ami-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3.5rem}
 .ac{background:#fff;border:1px solid var(--parch);padding:2.5rem;border-radius:4px;transition:all .3s}
 .ac:hover{border-color:var(--gold);box-shadow:0 12px 32px rgba(45,90,66,.1);transform:translateY(-4px)}
+.ac-image{width:100%;height:140px;object-fit:cover;border-radius:6px;margin-bottom:1rem;border:1px solid var(--parch)}
 .ac-ico{font-size:2rem;margin-bottom:1rem}
 .ac h3{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--txt);margin-bottom:.5rem}
 .ac p{font-size:.83rem;color:var(--tm);line-height:1.65}
@@ -184,12 +185,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--txt);o
 .rc{background:#fff;border:1px solid var(--parch);border-radius:6px;overflow:hidden;transition:all .35s}
 .rc:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(30,58,47,.15);border-color:var(--gold)}
 .ri{height:220px;position:relative;overflow:hidden}
-.ri-bg{width:100%;height:100%;transition:transform .6s ease}
-.rc:hover .ri-bg{transform:scale(1.07)}
-.r1{background:linear-gradient(135deg,#0a1f14 0%,#1e3a28 40%,#2d5a40 70%,#4a7858 100%)}
-.r2{background:linear-gradient(135deg,#081418 0%,#142838 40%,#1e3a50 70%,#2a5068 100%)}
-.r3{background:linear-gradient(135deg,#180f00 0%,#2a1808 30%,#4a2a10 60%,#6a3a18 85%,#8b5030 100%)}
-.r4{background:linear-gradient(135deg,#0f1408 0%,#1a2810 30%,#2a3a18 60%,#4a5428 100%)}
+.ri-image{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.rc:hover .ri-image{transform:scale(1.07)}
 .rbadge{position:absolute;top:1rem;right:1rem;background:var(--gold);color:var(--fd);font-size:.58rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:2px}
 .rc-body{padding:1.8rem 2rem}
 .rc-name{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--txt);margin-bottom:.35rem}
@@ -203,6 +200,25 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--txt);o
 .rp-l{font-size:.62rem;color:var(--tl);letter-spacing:.06em;display:block;margin-top:1px}
 .btn-book{background:var(--f);color:var(--cream);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;border:none;padding:10px 20px;cursor:pointer;border-radius:2px;transition:all .25s}
 .btn-book:hover{background:var(--fm);transform:translateY(-2px)}
+.room-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s ease}
+.room-slide.active{opacity:1}
+.room-slider-nav{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:1rem;pointer-events:none}
+.room-nav{pointer-events:auto;width:36px;height:36px;border:none;border-radius:50%;background:rgba(10,31,20,.7);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.room-slider-dots{position:absolute;left:50%;bottom:1rem;transform:translateX(-50%);display:flex;gap:6px}
+.room-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.55)}
+.room-dot.active{background:var(--gold)}
+.room-card.active{outline:2px solid rgba(201,162,82,.45);box-shadow:0 18px 42px rgba(30,58,47,.12)}
+.room-details{display:none;margin:0 4rem 5rem;background:#fff;border:1px solid var(--parch);border-radius:8px;overflow:hidden}
+.room-details.active{display:block}
+.room-details-inner{padding:2rem 2.25rem 2.5rem}
+.room-details-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:start}
+.room-details-copy h3{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--txt);margin-bottom:.7rem}
+.room-details-copy p{font-size:.9rem;color:var(--tm);line-height:1.75}
+.room-features{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-top:1rem}
+.room-features li{font-size:.82rem;color:var(--tm);display:flex;gap:.55rem}
+.room-features li::before{content:'✦';color:var(--gold)}
+.room-detail-images{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem}
+.room-detail-images img{width:100%;height:140px;object-fit:cover;border-radius:6px;border:1px solid var(--parch)}
 .inc-tbl-sec{background:var(--f);padding:6rem 4rem}
 .inc-tbl-sec .sl{color:rgba(201,162,82,.7)}
 .inc-tbl-sec .st{color:var(--cream)}
@@ -216,40 +232,20 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--txt);o
 .cn{color:rgba(245,240,220,.2);font-size:1rem}
 
 /* ── BOOKING ── */
-.book-wrap{background:var(--cream);padding:8rem 4rem 6rem;min-height:100vh;display:grid;grid-template-columns:3fr 2fr;gap:5rem;align-items:start}
-.bk-title{font-family:'Playfair Display',serif;font-size:2.6rem;color:var(--txt);margin-bottom:.4rem}
-.bk-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--tm);margin-bottom:3rem}
-.fst{font-family:'Playfair Display',serif;font-size:.85rem;font-weight:500;color:var(--f);letter-spacing:.08em;text-transform:uppercase;margin:2.2rem 0 1.2rem;padding-bottom:.5rem;border-bottom:1px solid var(--parch)}
-.fr{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.fg{margin-bottom:1.2rem}
-.fg label{display:block;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--tm);margin-bottom:6px}
-.fg input,.fg select,.fg textarea{width:100%;background:#fff;border:1px solid var(--parch);padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:.88rem;color:var(--txt);border-radius:3px;transition:border-color .2s;outline:none;appearance:none;-webkit-appearance:none}
-.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,162,82,.1)}
-.fg textarea{resize:vertical;min-height:90px}
-.room-opts{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.2rem}
-.ro{border:1px solid var(--parch);border-radius:3px;padding:1rem;cursor:pointer;transition:all .2s;background:#fff}
-.ro:hover{border-color:var(--gold)}
-.ro.sel{border-color:var(--gold);background:var(--gp)}
-.ro-name{font-family:'Playfair Display',serif;font-size:.85rem;color:var(--txt);margin-bottom:3px}
-.ro-price{font-size:.7rem;color:var(--tm)}
-.occ-grid{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.2rem}
-.occ{border:1px solid var(--parch);background:#fff;padding:6px 14px;border-radius:20px;font-size:.7rem;cursor:pointer;transition:all .2s;color:var(--tm)}
-.occ:hover,.occ.sel{border-color:var(--gold);background:var(--gp);color:var(--earth)}
-.submit-row{display:flex;gap:1rem;margin-top:2rem}
-.btn-wa{display:flex;align-items:center;justify-content:center;gap:8px;background:#25D366;color:#fff;border:none;padding:14px 22px;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;letter-spacing:.08em;border-radius:3px;cursor:pointer;transition:all .25s;flex:1}
-.btn-wa:hover{background:#20b857;transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.3)}
-.bk-sum{background:var(--fd);border:1px solid rgba(201,162,82,.2);border-radius:6px;padding:2rem;position:sticky;top:100px}
-.bs-ttl{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--cream);margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(201,162,82,.2)}
-.bsi{display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem}
-.bsi-l{font-size:.68rem;color:rgba(245,240,220,.45)}
-.bsi-v{font-family:'Playfair Display',serif;font-size:.85rem;color:var(--cream)}
-.bs-tot{margin-top:1.5rem;padding-top:1rem;border-top:1px solid rgba(201,162,82,.2)}
-.bs-tot .bsi-l{font-size:.75rem;color:var(--gold)}
-.bs-tot .bsi-v{font-size:1.4rem;color:var(--gold)}
-.bs-note{margin-top:1.5rem;font-size:.68rem;color:rgba(245,240,220,.35);line-height:1.65;font-style:italic}
-.bs-con{margin-top:1.5rem;padding:1rem;background:rgba(201,162,82,.07);border:1px solid rgba(201,162,82,.18);border-radius:3px}
-.bs-con-l{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(201,162,82,.65);margin-bottom:5px}
-.bs-con-v{font-size:.82rem;color:var(--cream)}
+.contact-shell{background:var(--cream);padding:8rem 4rem 6rem;min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:start}
+.contact-card{background:#fff;border:1px solid var(--parch);border-radius:10px;padding:2.6rem;box-shadow:0 20px 45px rgba(10,31,20,.08)}
+.contact-card .bk-title{font-size:2.2rem;margin-bottom:.5rem}
+.contact-card .bk-sub{margin-bottom:2rem}
+.contact-actions{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem}
+.contact-actions .btn-wa,.contact-actions .btn-primary{flex:0 0 auto;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.contact-list{display:grid;gap:1rem;margin-top:2rem}
+.contact-item{background:var(--warm);border:1px solid var(--parch);border-radius:8px;padding:1rem 1.1rem;display:flex;justify-content:space-between;gap:1rem;align-items:center}
+.contact-item strong{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--earth)}
+.contact-item span{font-size:.92rem;color:var(--txt)}
+.contact-panel{background:var(--fd);border:1px solid rgba(201,162,82,.2);border-radius:10px;padding:2rem;display:flex;flex-direction:column;gap:1.2rem;position:sticky;top:100px}
+.contact-panel img{width:100%;height:240px;object-fit:cover;border-radius:8px;border:1px solid rgba(201,162,82,.18)}
+.contact-note{font-size:.92rem;color:rgba(245,240,220,.75);line-height:1.75}
+.contact-panel .loc-list{margin-top:0}
 
 /* ── FOOTER ── */
 footer{background:#060f0a;padding:4rem;border-top:1px solid rgba(201,162,82,.12)}
@@ -375,11 +371,11 @@ footer{background:#060f0a;padding:4rem;border-top:1px solid rgba(201,162,82,.12)
       <div class="sdiv"></div>
     </div>
     <div class="gg">
-      <div class="gi"><div class="gi-bg g1"></div><div class="gi-ov"><span class="gi-lbl">Morning in the Forest</span></div></div>
-      <div class="gi"><div class="gi-bg g2"></div><div class="gi-ov"><span class="gi-lbl">Sunset Dinner</span></div></div>
-      <div class="gi"><div class="gi-bg g3"></div><div class="gi-ov"><span class="gi-lbl">The Stream at Dawn</span></div></div>
-      <div class="gi"><div class="gi-bg g4"></div><div class="gi-ov"><span class="gi-lbl">Cottage Warmth</span></div></div>
-      <div class="gi"><div class="gi-bg g5"></div><div class="gi-ov"><span class="gi-lbl">Evening Bonfire</span></div></div>
+      <div class="gi"><img class="gi-image" src="images/Top view of the garden.jpeg" alt="Lush green garden views at The Stream Leaf"><div class="gi-ov"><span class="gi-lbl">Lush Garden Views</span></div></div>
+      <div class="gi"><img class="gi-image" src="images/Swimming pool.jpeg" alt="Swimming pool and resort leisure at The Stream Leaf"><div class="gi-ov"><span class="gi-lbl">Poolside Leisure</span></div></div>
+      <div class="gi"><img class="gi-image" src="images/Pool with dance floor.jpeg" alt="Celebration and dance floor ambience"><div class="gi-ov"><span class="gi-lbl">Party Mood Nights</span></div></div>
+      <div class="gi"><img class="gi-image" src="images/cottage.jpeg" alt="Village-style cottage stay at The Stream Leaf"><div class="gi-ov"><span class="gi-lbl">Village-Style Stay</span></div></div>
+      <div class="gi"><img class="gi-image" src="images/Garden area.jpeg" alt="Greener resort landscape and open lawns"><div class="gi-ov"><span class="gi-lbl">Green Resort Escape</span></div></div>
     </div>
   </div>
 
@@ -434,9 +430,10 @@ footer{background:#060f0a;padding:4rem;border-top:1px solid rgba(201,162,82,.12)
 
   <div class="story">
     <div class="sv">
+      <img class="sv-image" src="images/Top view of the garden.jpeg" alt="Garden view at The Stream Leaf">
       <div class="sv-overlay">
-        <div class="sv-icon">🌊</div>
-        <div class="sv-caption">The stream that gives<br>this place its name</div>
+        <div class="sv-icon">🏡</div>
+        <div class="sv-caption">A calm retreat shaped by warm family hospitality</div>
       </div>
     </div>
     <div class="stxt">
@@ -444,7 +441,7 @@ footer{background:#060f0a;padding:4rem;border-top:1px solid rgba(201,162,82,.12)
       <h2 class="st">Built by family.<br>Run by family.</h2>
       <div class="sdiv"></div>
       <p>The Stream Leaf was built five years ago with a simple idea — to create a place near Mysore where families from Bangalore could come and truly rest. Not a managed hotel. Not a franchise. A personal space.</p>
-      <p>The property is named for the small stream that borders the grounds. In the early mornings, you hear it before you see it. We think that's how a weekend should begin.</p>
+      <p>The name reflects the calm, green setting that inspired the property and the feeling of slowing down the moment you arrive.</p>
       <p>After years of learning what our guests truly need, the founding family has personally taken back management of every aspect of The Stream Leaf — from the kitchen to the guest rooms. What you experience here is ours to own, and ours to improve.</p>
     </div>
   </div>
@@ -454,12 +451,26 @@ footer{background:#060f0a;padding:4rem;border-top:1px solid rgba(201,162,82,.12)
     <h2 class="st">Everything you need.<br>Nothing you don't.</h2>
     <div class="sdiv"></div>
     <div class="ami-grid">
-      <div class="ac"><div class="ac-ico">🍽️</div><h3>All-Inclusive Dining</h3><p>Welcome tea, breakfast, full lunch, evening snacks and a sit-down dinner. Home recipes, seasonal ingredients, prepared fresh daily.</p></div>
-      <div class="ac"><div class="ac-ico">🌿</div><h3>Nature & Outdoors</h3><p>Nature walks on the property, open lawns, stream views and an outdoor bonfire area. The evenings here are something else.</p></div>
-      <div class="ac"><div class="ac-ico">🏡</div><h3>Comfortable Rooms</h3><p>Clean, well-maintained rooms and cottages with attached bathrooms, hot water and all basic amenities. No frills, no pretension.</p></div>
-      <div class="ac"><div class="ac-ico">👨‍👩‍👧‍👦</div><h3>Family-Friendly</h3><p>Open spaces for children, safe environment and a host family that genuinely cares whether your kids are having fun.</p></div>
-      <div class="ac"><div class="ac-ico">💼</div><h3>Corporate Offsites</h3><p>Quiet setting, open spaces, and the ability to accommodate groups of 20–40 guests for team retreats and annual offsites.</p></div>
-      <div class="ac"><div class="ac-ico">📍</div><h3>Perfect Location</h3><p>Ramabai Nagar, Outer Ring Road, Mysore. Under 3 hours from Bangalore. Easy access, private setting.</p></div>
+      <div class="ac"><img class="ac-image" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80" alt="Elegant dining experience at the resort"><div class="ac-ico">🍽️</div><h3>All-Inclusive Dining</h3><p>From welcome tea to a relaxed dinner, every meal is prepared with care. If you wish to bring your own food, we can cook and serve it for you in our kitchen.</p></div>
+      <div class="ac"><img class="ac-image" src="images/lush green .jpeg" alt="Lush green resort landscape"><div class="ac-ico">🌿</div><h3>Nature & Outdoors</h3><p>Open lawns, poolside evenings, green views and relaxed corners make the property feel calm, fresh and perfect for unwinding.</p></div>
+      <div class="ac"><img class="ac-image" src="images/spacious room.jpeg" alt="Comfortable village-style resort room"><div class="ac-ico">🏡</div><h3>Comfortable Rooms</h3><p>Clean, well-maintained rooms and cottages with attached bathrooms, hot water and all basic amenities. No frills, no pretension.</p></div>
+      <div class="ac"><img class="ac-image" src="images/another room.jpeg" alt="Family-friendly resort stay"><div class="ac-ico">👨‍👩‍👧‍👦</div><h3>Family-Friendly</h3><p>Open spaces for children, a safe environment and a host family that genuinely cares whether your kids are having fun.</p></div>
+      <div class="ac"><img class="ac-image" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80" alt="Corporate event and celebration space"><div class="ac-ico">💼</div><h3>Corporate Offsites</h3><p>Quiet setting, green lawns, poolside gatherings and the ability to host groups of 20–40 guests for offsites, team retreats and celebrations.</p></div>
+      <div class="ac"><img class="ac-image" src="images/Entrance .jpeg" alt="Scenic resort location near Mysore"><div class="ac-ico">📍</div><h3>Perfect Location</h3><p>Ramabai Nagar, Outer Ring Road, Mysore. Under 3 hours from Bangalore, with easy access and a peaceful green setting.</p></div>
+    </div>
+  </div>
+
+  <div class="resort-gallery">
+    <p class="sl">Resort Gallery</p>
+    <h2 class="st">A full view of the property, the greens and the stay.</h2>
+    <div class="sdiv"></div>
+    <div class="resort-gallery-grid">
+      <img src="images/Reception.jpeg" alt="Reception area at The Stream Leaf">
+      <img src="images/lush green 2.jpeg" alt="Garden path and greenery at the resort">
+      <img src="images/village style rooms .jpeg" alt="Village-style rooms at the property">
+      <img src="images/Pool with dance floor.jpeg" alt="Poolside evenings and dance floor">
+      <img src="images/swimming pool2.jpeg" alt="Swimming pool and open space">
+      <img src="images/outside view of the resort .jpeg" alt="Outside view of the resort">
     </div>
   </div>
 
@@ -498,8 +509,20 @@ footer{background:#060f0a;padding:4rem;border-top:1px solid rgba(201,162,82,.12)
   </div>
 
   <div class="rooms-grid">
-    <div class="rc">
-      <div class="ri"><div class="ri-bg r1"></div><div class="rbadge">Most Popular</div></div>
+    <div class="rc room-card" data-room="forest" onclick="toggleRoomDetails('forest')">
+      <div class="ri room-slider" data-room="forest">
+        <img class="room-slide active" src="images/room.jpeg" alt="Forest Room">
+        <img class="room-slide" src="images/view from inside the room.jpeg" alt="Forest Room interior view">
+        <img class="room-slide" src="images/view from balcony.jpeg" alt="Forest Room balcony view">
+        <div class="room-slider-nav">
+          <button type="button" class="room-nav prev" onclick="event.stopPropagation(); changeRoomSlide('forest', -1)">‹</button>
+          <button type="button" class="room-nav next" onclick="event.stopPropagation(); changeRoomSlide('forest', 1)">›</button>
+        </div>
+        <div class="room-slider-dots">
+          <span class="room-dot active"></span><span class="room-dot"></span><span class="room-dot"></span>
+        </div>
+        <div class="rbadge">Most Popular</div>
+      </div>
       <div class="rc-body">
         <div class="rc-name">Forest Room</div>
         <div class="rc-tag">A cosy garden-view retreat for two</div>
@@ -511,29 +534,53 @@ footer{background:#060f0a;padding:4rem;border-top:1px solid rgba(201,162,82,.12)
         </ul>
         <div class="rc-foot">
           <div class="rp"><div class="rp-n">₹2,800<span style="font-size:.9rem;color:var(--tm)">/person</span></div><span class="rp-l">Per night · All inclusive</span></div>
-          <button class="btn-book" onclick="gotoBookRoom('Forest Room')">Book Now</button>
+          <button class="btn-book" onclick="event.stopPropagation(); gotoBookRoom('Forest Room')">Book Now</button>
         </div>
       </div>
     </div>
-    <div class="rc">
-      <div class="ri"><div class="ri-bg r2"></div><div class="rbadge">Romantic Pick</div></div>
+    <div class="rc room-card" data-room="cottage" onclick="toggleRoomDetails('cottage')">
+      <div class="ri room-slider" data-room="cottage">
+        <img class="room-slide active" src="images/cottage.jpeg" alt="Garden Cottage">
+        <img class="room-slide" src="images/cottage sit out.jpeg" alt="Garden Cottage sit-out">
+        <img class="room-slide" src="images/lush green cottage.jpeg" alt="Garden Cottage garden setting">
+        <div class="room-slider-nav">
+          <button type="button" class="room-nav prev" onclick="event.stopPropagation(); changeRoomSlide('cottage', -1)">‹</button>
+          <button type="button" class="room-nav next" onclick="event.stopPropagation(); changeRoomSlide('cottage', 1)">›</button>
+        </div>
+        <div class="room-slider-dots">
+          <span class="room-dot active"></span><span class="room-dot"></span><span class="room-dot"></span>
+        </div>
+        <div class="rbadge">Romantic Pick</div>
+      </div>
       <div class="rc-body">
-        <div class="rc-name">Stream Cottage</div>
-        <div class="rc-tag">Overlooks the stream · For couples</div>
+        <div class="rc-name">Garden Cottage</div>
+        <div class="rc-tag">Quiet garden-facing stay · For couples</div>
         <ul class="rc-feats">
-          <li>Private cottage with stream view</li>
+          <li>Private cottage with garden-facing verandah</li>
           <li>Sit-out / private verandah</li>
           <li>All meals included + special dinner</li>
           <li>Personalised hosting · Evening bonfire</li>
         </ul>
         <div class="rc-foot">
           <div class="rp"><div class="rp-n">₹3,600<span style="font-size:.9rem;color:var(--tm)">/person</span></div><span class="rp-l">Per night · All inclusive</span></div>
-          <button class="btn-book" onclick="gotoBookRoom('Stream Cottage')">Book Now</button>
+          <button class="btn-book" onclick="event.stopPropagation(); gotoBookRoom('Garden Cottage')">Book Now</button>
         </div>
       </div>
     </div>
-    <div class="rc">
-      <div class="ri"><div class="ri-bg r3"></div><div class="rbadge">Family Favourite</div></div>
+    <div class="rc room-card" data-room="family" onclick="toggleRoomDetails('family')">
+      <div class="ri room-slider" data-room="family">
+        <img class="room-slide active" src="images/bedroom 2 occupant.jpeg" alt="Family Suite">
+        <img class="room-slide" src="images/spacious room.jpeg" alt="Family Suite spacious interior">
+        <img class="room-slide" src="images/3 occupant bedroom.jpeg" alt="Family Suite sleeping setup">
+        <div class="room-slider-nav">
+          <button type="button" class="room-nav prev" onclick="event.stopPropagation(); changeRoomSlide('family', -1)">‹</button>
+          <button type="button" class="room-nav next" onclick="event.stopPropagation(); changeRoomSlide('family', 1)">›</button>
+        </div>
+        <div class="room-slider-dots">
+          <span class="room-dot active"></span><span class="room-dot"></span><span class="room-dot"></span>
+        </div>
+        <div class="rbadge">Family Favourite</div>
+      </div>
       <div class="rc-body">
         <div class="rc-name">Family Suite</div>
         <div class="rc-tag">Spacious · Up to 6 guests</div>
@@ -545,12 +592,24 @@ footer{background:#060f0a;padding:4rem;border-top:1px solid rgba(201,162,82,.12)
         </ul>
         <div class="rc-foot">
           <div class="rp"><div class="rp-n">₹2,400<span style="font-size:.9rem;color:var(--tm)">/person</span></div><span class="rp-l">Minimum 4 guests · All inclusive</span></div>
-          <button class="btn-book" onclick="gotoBookRoom('Family Suite')">Book Now</button>
+          <button class="btn-book" onclick="event.stopPropagation(); gotoBookRoom('Family Suite')">Book Now</button>
         </div>
       </div>
     </div>
-    <div class="rc">
-      <div class="ri"><div class="ri-bg r4"></div><div class="rbadge">Group / Offsite</div></div>
+    <div class="rc room-card" data-room="group" onclick="toggleRoomDetails('group')">
+      <div class="ri room-slider" data-room="group">
+        <img class="room-slide active" src="images/Pool with dance floor.jpeg" alt="Group celebration and offsite setup">
+        <img class="room-slide" src="images/dance floor and swimming pool.jpeg" alt="Poolside offsite setup">
+        <img class="room-slide" src="images/Reception.jpeg" alt="Resort reception for group arrivals">
+        <div class="room-slider-nav">
+          <button type="button" class="room-nav prev" onclick="event.stopPropagation(); changeRoomSlide('group', -1)">‹</button>
+          <button type="button" class="room-nav next" onclick="event.stopPropagation(); changeRoomSlide('group', 1)">›</button>
+        </div>
+        <div class="room-slider-dots">
+          <span class="room-dot active"></span><span class="room-dot"></span><span class="room-dot"></span>
+        </div>
+        <div class="rbadge">Group / Offsite</div>
+      </div>
       <div class="rc-body">
         <div class="rc-name">Group Package</div>
         <div class="rc-tag">Full resort · 20–40 guests</div>
@@ -562,8 +621,22 @@ footer{background:#060f0a;padding:4rem;border-top:1px solid rgba(201,162,82,.12)
         </ul>
         <div class="rc-foot">
           <div class="rp"><div class="rp-n">Custom</div><span class="rp-l">Pricing on request</span></div>
-          <button class="btn-book" onclick="gotoBookRoom('Group Package')">Enquire Now</button>
+          <button class="btn-book" onclick="event.stopPropagation(); gotoBookRoom('Group Package')">Enquire Now</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="room-details" id="room-details-panel">
+    <div class="room-details-inner">
+      <div class="room-details-grid">
+        <div class="room-details-copy">
+          <p class="sl">Room Details</p>
+          <h3 id="room-details-title">Select a room to view details</h3>
+          <p id="room-details-desc"></p>
+          <ul class="room-features" id="room-details-features"></ul>
+        </div>
+        <div class="room-detail-images" id="room-details-images"></div>
       </div>
     </div>
   </div>
@@ -577,7 +650,7 @@ footer{background:#060f0a;padding:4rem;border-top:1px solid rgba(201,162,82,.12)
         <tr>
           <th>Inclusion</th>
           <th>Forest Room</th>
-          <th>Stream Cottage</th>
+          <th>Garden Cottage</th>
           <th>Family Suite</th>
           <th>Group Package</th>
         </tr>
@@ -601,75 +674,30 @@ footer{background:#060f0a;padding:4rem;border-top:1px solid rgba(201,162,82,.12)
 
 <!-- ══════════════════ BOOKING ══════════════════ -->
 <div id="page-book" class="page">
-  <div class="book-wrap">
-    <div class="booking-form-section">
-      <h1 class="bk-title">Book Your Stay</h1>
-      <p class="bk-sub">All meals included · 12 PM Check-in · 11 AM Checkout</p>
-
-      <div class="fst">Stay Dates & Guests</div>
-      <div class="fr">
-        <div class="fg"><label>Check-In Date</label><input type="date" id="checkin" onchange="updateSummary()"></div>
-        <div class="fg"><label>Check-Out Date</label><input type="date" id="checkout" onchange="updateSummary()"></div>
+  <div class="contact-shell">
+    <div class="contact-card">
+      <p class="sl">Contact & Reservations</p>
+      <h1 class="bk-title">Personal hospitality, direct and effortless</h1>
+      <p class="bk-sub">For availability, family stays, anniversaries or group bookings, please connect with us directly by phone or WhatsApp. We confirm every detail personally.</p>
+      <div class="contact-actions">
+        <a class="btn-wa" href="https://wa.me/919880800990?text=Hello%20The%20Stream%20Leaf%2C%20I%20would%20like%20to%20enquire%20about%20a%20stay." target="_blank">WhatsApp Us</a>
+        <a class="btn-primary" href="tel:+919880800990">Call Now</a>
       </div>
-      <div class="fr">
-        <div class="fg"><label>Adults</label><select id="adults" onchange="updateSummary()"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
-        <div class="fg"><label>Children</label><select id="children" onchange="updateSummary()"><option selected>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select></div>
-      </div>
-
-      <div class="fst">Select Room Type</div>
-      <div class="room-opts">
-        <div class="ro sel" id="ro-forest" onclick="selRoom('Forest Room',2800)"><div class="ro-name">Forest Room</div><div class="ro-price">₹2,800 / person · night</div></div>
-        <div class="ro" id="ro-stream" onclick="selRoom('Stream Cottage',3600)"><div class="ro-name">Stream Cottage</div><div class="ro-price">₹3,600 / person · night</div></div>
-        <div class="ro" id="ro-family" onclick="selRoom('Family Suite',2400)"><div class="ro-name">Family Suite</div><div class="ro-price">₹2,400 / person · night (min 4)</div></div>
-        <div class="ro" id="ro-group" onclick="selRoom('Group Package',0)"><div class="ro-name">Group Package</div><div class="ro-price">Custom pricing on request</div></div>
-      </div>
-
-      <div class="fst">Special Occasion?</div>
-      <div class="occ-grid">
-        <div class="occ" onclick="selOcc(this, '')">None</div>
-        <div class="occ" onclick="selOcc(this, 'Anniversary')">💑 Anniversary</div>
-        <div class="occ" onclick="selOcc(this, 'Birthday')">🎂 Birthday</div>
-        <div class="occ" onclick="selOcc(this, 'Family Reunion')">👨‍👩‍👧 Family Reunion</div>
-        <div class="occ" onclick="selOcc(this, 'Corporate Offsite')">💼 Corporate Offsite</div>
-        <div class="occ" onclick="selOcc(this, 'Honeymoon')">🌸 Honeymoon</div>
-      </div>
-
-      <div class="fst">Your Details</div>
-      <div class="fr">
-        <div class="fg"><label>Full Name</label><input type="text" id="fname" placeholder="Your name" onchange="updateSummary()"></div>
-        <div class="fg"><label>WhatsApp Number</label><input type="tel" id="fphone" placeholder="+91 00000 00000" onchange="updateSummary()"></div>
-      </div>
-      <div class="fg"><label>Email (Optional)</label><input type="email" id="femail" placeholder="your@email.com"></div>
-
-      <div class="fst">Anything to Tell Us?</div>
-      <div class="fg"><label>Special Requests</label><textarea id="freqs" placeholder="Dietary needs, accessibility requirements, celebration details, preferred room location..."></textarea></div>
-
-      <div class="submit-row">
-        <button class="btn-wa" onclick="bookWA()">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Confirm via WhatsApp
-        </button>
-        <button class="btn-primary" onclick="bookWA()" style="flex:0.6;border-radius:3px">Send Enquiry</button>
+      <div class="contact-list">
+        <div class="contact-item"><strong>Phone</strong><span>+91 98808 00990</span></div>
+        <div class="contact-item"><strong>Address</strong><span>Ramabai Nagar, Outer Ring Road, Mysore</span></div>
+        <div class="contact-item"><strong>Ideal For</strong><span>Couples, families, groups & corporate retreats</span></div>
       </div>
     </div>
 
-    <!-- SUMMARY -->
-    <div class="bk-sum">
-      <div class="bs-ttl">Booking Summary</div>
-      <div class="bsi"><span class="bsi-l">Check-In</span><span class="bsi-v" id="s-ci">—</span></div>
-      <div class="bsi"><span class="bsi-l">Check-Out</span><span class="bsi-v" id="s-co">—</span></div>
-      <div class="bsi"><span class="bsi-l">Guests</span><span class="bsi-v" id="s-guests">2 Adults</span></div>
-      <div class="bsi"><span class="bsi-l">Room Type</span><span class="bsi-v" id="s-room">Forest Room</span></div>
-      <div class="bsi"><span class="bsi-l">Rate</span><span class="bsi-v" id="s-rate">₹2,800 / person</span></div>
-      <div class="bsi"><span class="bsi-l">Nights</span><span class="bsi-v" id="s-nights">—</span></div>
-      <div class="bs-tot">
-        <div class="bsi"><span class="bsi-l">Estimated Total</span><span class="bsi-v" id="s-total">—</span></div>
-      </div>
-      <p class="bs-note">All meals included. No hidden charges. 50% advance to confirm booking. Balance at check-in.</p>
-      <div class="bs-con">
-        <div class="bs-con-l">Direct Contact</div>
-        <div class="bs-con-v">+91 97399 91687</div>
-      </div>
+    <div class="contact-panel">
+      <img src="images/Reception.jpeg" alt="Reception at The Stream Leaf">
+      <p class="contact-note">A warm welcome, all meals included, and a calm setting for your next break in Mysore.</p>
+      <ul class="loc-list">
+        <li>Family-run property with personal hosting</li>
+        <li>Ideal for couples, families and corporate events</li>
+        <li>Check-in from 12 PM · Checkout by 11 AM</li>
+      </ul>
     </div>
   </div>
 </div>
@@ -694,7 +722,7 @@ footer{background:#060f0a;padding:4rem;border-top:1px solid rgba(201,162,82,.12)
       <div class="fc-ttl">Stay Types</div>
       <ul class="fc-links">
         <li><a>Forest Room</a></li>
-        <li><a>Stream Cottage</a></li>
+        <li><a>Garden Cottage</a></li>
         <li><a>Family Suite</a></li>
         <li><a>Group Package</a></li>
       </ul>
@@ -702,10 +730,10 @@ footer{background:#060f0a;padding:4rem;border-top:1px solid rgba(201,162,82,.12)
     <div>
       <div class="fc-ttl">Contact</div>
       <ul class="fc-links">
-        <li><a>+91 XXXXX XXXXX</a></li>
+        <li><a>+91 98808 00990</a></li>
         <li><a>Ramabai Nagar</a></li>
         <li><a>Outer Ring Road, Mysore</a></li>
-        <li><a style="color:#25D366">WhatsApp Us</a></li>
+        <li><a href="https://wa.me/919880800990" target="_blank" style="color:#25D366">WhatsApp Us</a></li>
       </ul>
     </div>
   </div>
@@ -716,27 +744,25 @@ footer{background:#060f0a;padding:4rem;border-top:1px solid rgba(201,162,82,.12)
 </footer>
 
 <!-- WA FAB -->
-<a class="wa-fab" href="https://wa.me/919739991687?text=Hi%2C%20I'd%20like%20to%20enquire%20about%20booking%20The%20Stream%20Leaf" target="_blank">
+<a class="wa-fab" href="https://wa.me/919880800990?text=Hi%2C%20I'd%20like%20to%20enquire%20about%20booking%20The%20Stream%20Leaf" target="_blank">
   <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 <script>
-// ── PAGE ROUTING ──────────────────────────────────────────────
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + id).classList.add('active');
+  const target = document.getElementById('page-' + id);
+  if (target) target.classList.add('active');
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   const nl = document.getElementById('nl-' + id);
   if (nl) nl.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ── NAV SCROLL ────────────────────────────────────────────────
 window.addEventListener('scroll', () => {
   document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
 });
 
-// ── TESTIMONIALS ─────────────────────────────────────────────
 const TESTIS = [
   { q: 'We came for a weekend, stayed for the memories. The food alone was worth every kilometre from Bangalore.', a: '— Priya & Karthik · Bangalore' },
   { q: 'First time here was three years ago. We keep coming back. It is the only place where we truly switch off.', a: '— The Murthy Family · Bangalore' },
@@ -751,82 +777,95 @@ function setTesti(i) {
 }
 setInterval(() => setTesti((curT + 1) % 3), 4500);
 
-// ── ROOM SELECTION ────────────────────────────────────────────
-let selRoomName = 'Forest Room', selRoomRate = 2800;
-const roomIds = { 'Forest Room':'ro-forest','Stream Cottage':'ro-stream','Family Suite':'ro-family','Group Package':'ro-group' };
-function selRoom(name, rate) {
-  selRoomName = name; selRoomRate = rate;
-  document.querySelectorAll('.ro').forEach(r => r.classList.remove('sel'));
-  document.getElementById(roomIds[name]).classList.add('sel');
-  document.getElementById('s-room').textContent = name;
-  document.getElementById('s-rate').textContent = rate ? '₹' + rate.toLocaleString('en-IN') + ' / person' : 'Custom pricing';
-  updateSummary();
+const ROOM_DETAILS = {
+  forest: {
+    title: 'Forest Room',
+    desc: 'A calm, garden-facing room for couples and solo travellers who want a peaceful break with all meals, nature walks and bonfire evenings included.',
+    features: ['Quiet garden-facing stay', 'Attached bathroom with hot water', 'All meals included', 'Nature walk and bonfire access'],
+    images: ['images/room.jpeg', 'images/view from inside the room.jpeg', 'images/view from balcony.jpeg']
+  },
+  cottage: {
+    title: 'Garden Cottage',
+    desc: 'A private cottage with its own sit-out, ideal for romantic escapes, intimate weekends and longer slow mornings.',
+    features: ['Private verandah and sit-out', 'Garden-facing ambience', 'Special dinner and personalised hosting', 'Ideal for anniversaries and couples'],
+    images: ['images/cottage.jpeg', 'images/cottage sit out.jpeg', 'images/lush green cottage.jpeg']
+  },
+  family: {
+    title: 'Family Suite',
+    desc: 'A spacious stay for family trips, giving everyone room to gather, relax and enjoy the property together.',
+    features: ['Spacious layout for 4 to 6 guests', 'Dedicated host for family stays', 'Kids-friendly lawn access', 'All meals and outdoor seating'],
+    images: ['images/bedroom 2 occupant.jpeg', 'images/spacious room.jpeg', 'images/3 occupant bedroom.jpeg']
+  },
+  group: {
+    title: 'Group Package',
+    desc: 'A full-property option for team offsites, reunions and celebrations, with enough space for 20 to 40 guests.',
+    features: ['Exclusive resort booking', 'Perfect for corporate retreats', 'Tailored menus and event coordination', 'Pool and lawn spaces for gatherings'],
+    images: ['images/Pool with dance floor.jpeg', 'images/dance floor and swimming pool.jpeg', 'images/Reception.jpeg']
+  }
+};
+
+function initRoomSliders() {
+  document.querySelectorAll('.room-slider').forEach(slider => {
+    const slides = slider.querySelectorAll('.room-slide');
+    if (!slides.length) return;
+    slider.dataset.index = '0';
+    const dots = slider.querySelectorAll('.room-dot');
+    slides.forEach((slide, index) => slide.classList.toggle('active', index === 0));
+    dots.forEach((dot, index) => dot.classList.toggle('active', index === 0));
+  });
 }
 
-// ── OCCASION SELECTION ────────────────────────────────────────
-let selOccasion = '';
-function selOcc(el, val) {
-  selOccasion = val;
-  document.querySelectorAll('.occ').forEach(o => o.classList.remove('sel'));
-  el.classList.add('sel');
+function changeRoomSlide(roomKey, direction) {
+  const slider = document.querySelector(`.room-slider[data-room="${roomKey}"]`);
+  if (!slider) return;
+  const slides = slider.querySelectorAll('.room-slide');
+  const dots = slider.querySelectorAll('.room-dot');
+  let index = Number(slider.dataset.index || 0);
+  index = (index + direction + slides.length) % slides.length;
+  slider.dataset.index = index;
+  slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+  dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
 }
 
-// ── BOOKING SUMMARY ───────────────────────────────────────────
-function updateSummary() {
-  const ci = document.getElementById('checkin').value;
-  const co = document.getElementById('checkout').value;
-  const adults = parseInt(document.getElementById('adults').value) || 2;
-  const children = parseInt(document.getElementById('children').value) || 0;
-  document.getElementById('s-ci').textContent = ci ? fmtDate(ci) : '—';
-  document.getElementById('s-co').textContent = co ? fmtDate(co) : '—';
-  document.getElementById('s-guests').textContent = adults + ' Adult' + (adults > 1 ? 's' : '') + (children ? ', ' + children + ' Child' + (children > 1 ? 'ren' : '') : '');
-  if (ci && co) {
-    const nights = Math.max(0, Math.round((new Date(co) - new Date(ci)) / 86400000));
-    document.getElementById('s-nights').textContent = nights + ' night' + (nights !== 1 ? 's' : '');
-    if (selRoomRate && nights > 0) {
-      const total = selRoomRate * adults * nights;
-      document.getElementById('s-total').textContent = '₹' + total.toLocaleString('en-IN');
-    } else if (!selRoomRate) {
-      document.getElementById('s-total').textContent = 'On request';
-    } else { document.getElementById('s-total').textContent = '—'; }
-  } else { document.getElementById('s-nights').textContent = '—'; document.getElementById('s-total').textContent = '—'; }
-}
-function fmtDate(d) {
-  const dt = new Date(d); return dt.toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' });
+function toggleRoomDetails(roomKey) {
+  const panel = document.getElementById('room-details-panel');
+  const cards = document.querySelectorAll('.room-card');
+  const details = ROOM_DETAILS[roomKey];
+  if (!panel || !details) return;
+
+  const isSame = panel.dataset.active === roomKey;
+  cards.forEach(card => card.classList.toggle('active', card.dataset.room === roomKey && !isSame));
+
+  if (isSame) {
+    panel.classList.remove('active');
+    panel.dataset.active = '';
+    return;
+  }
+
+  document.getElementById('room-details-title').textContent = details.title;
+  document.getElementById('room-details-desc').textContent = details.desc;
+  const features = document.getElementById('room-details-features');
+  features.innerHTML = details.features.map(item => `<li>${item}</li>`).join('');
+  const images = document.getElementById('room-details-images');
+  images.innerHTML = details.images.map(src => `<img src="${src}" alt="${details.title} preview">`).join('');
+
+  panel.classList.add('active');
+  panel.dataset.active = roomKey;
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// ── WHATSAPP BOOKING ──────────────────────────────────────────
 function bookWA() {
-  const ci = document.getElementById('checkin').value;
-  const co = document.getElementById('checkout').value;
-  const adults = document.getElementById('adults').value;
-  const children = document.getElementById('children').value;
-  const name = document.getElementById('fname').value;
-  const phone = document.getElementById('fphone').value;
-  const reqs = document.getElementById('freqs').value;
-  if (!ci || !co) { alert('Please select your check-in and check-out dates.'); return; }
-  if (!name) { alert('Please enter your name.'); return; }
-  let msg = `Hello! I'd like to book The Stream Leaf 🌿\n\n*Booking Details:*\n✅ Check-in: ${fmtDate(ci)}\n✅ Check-out: ${fmtDate(co)}\n✅ Guests: ${adults} Adults${parseInt(children)>0 ? ', '+children+' Children' : ''}\n✅ Room: ${selRoomName}\n${selOccasion ? '🎉 Occasion: '+selOccasion+'\n' : ''}\n*My Details:*\nName: ${name}\nPhone: ${phone || 'To be shared'}${reqs ? '\n\nSpecial Requests: '+reqs : ''}`;
-  window.open('https://wa.me/919739991687?text=' + encodeURIComponent(msg), '_blank');
+  const msg = 'Hello! I would like to enquire about a stay at The Stream Leaf. Please share availability and the best way to reach you.';
+  window.open('https://wa.me/919880800990?text=' + encodeURIComponent(msg), '_blank');
 }
 
-// ── ROOM → BOOK ───────────────────────────────────────────────
 function gotoBookRoom(roomName) {
-  const rates = { 'Forest Room': 2800, 'Stream Cottage': 3600, 'Family Suite': 2400, 'Group Package': 0 };
   showPage('book');
-  setTimeout(() => selRoom(roomName, rates[roomName]), 100);
+  const roomMsg = `Hello! I am interested in the ${roomName} at The Stream Leaf. Please share availability and the next steps.`;
+  window.open('https://wa.me/919880800990?text=' + encodeURIComponent(roomMsg), '_blank');
 }
 
-// ── SET DEFAULT DATES ─────────────────────────────────────────
-(function() {
-  const today = new Date();
-  const nextSat = new Date(today);
-  nextSat.setDate(today.getDate() + ((6 - today.getDay() + 7) % 7 || 7));
-  const nextSun = new Date(nextSat); nextSun.setDate(nextSat.getDate() + 1);
-  document.getElementById('checkin').value = nextSat.toISOString().split('T')[0];
-  document.getElementById('checkout').value = nextSun.toISOString().split('T')[0];
-  updateSummary();
-})();
+initRoomSliders();
 </script>
 
 </body>
